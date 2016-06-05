@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js">
 <head>
+	<title><?php wp_title('|', true, 'right'); ?></title>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
@@ -14,7 +15,7 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
-	<div id="sidebar" class="header-panel shadow-z-2">
+	<div id="sidebar" class="header-panel shadow">
 			<div class="navbar navbar-inverse">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-warning-collapse">

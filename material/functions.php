@@ -20,7 +20,7 @@ function material_setup() {
 
 	// Navigation
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu',      'twentyfifteen' )
+		'primary' => __( 'Primary Menu',      'material' )
 	) );
 
 	// Set content-width
@@ -45,6 +45,9 @@ function material_setup() {
 		'video', 'quote', 'gallery'
 	) );
 
+	// Make the theme translation ready
+	load_theme_textdomain('material', get_template_directory() . '/languages');
+	
 	
 }
 
@@ -62,7 +65,7 @@ function material_scripts() {
 
 	// Add stylesheet.
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '3.2' );
-	wp_enqueue_style( 'material', get_template_directory_uri() . '/css/material.css', array(), '' );
+	wp_enqueue_style( 'material', get_template_directory_uri() . '/css/global.css', array(), '' );
 
 	// Load our main stylesheet.
 	wp_enqueue_style( 'material-style', get_stylesheet_uri() );
@@ -72,17 +75,14 @@ function material_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 	
-	wp_enqueue_script( 'material_bootstrap', get_template_directory_uri().'/js/bootstrap.min.js', array('jquery'), '', true );
 	wp_enqueue_script( 'material_flexslider', get_template_directory_uri().'/js/flexslider.min.js', array('jquery'), '', true );
 	wp_enqueue_script( 'material_global', get_template_directory_uri().'/js/global.js', array('jquery'), '', true  );
-	wp_enqueue_script( 'material-script', get_template_directory_uri() . '/js/material.js', array( 'jquery' ), '20141212', true );
-	wp_enqueue_script( 'ripples-script', get_template_directory_uri() . '/js/ripples.js', array( 'jquery' ), '20141212', true );
 	
 }
 add_action( 'wp_enqueue_scripts', 'material_scripts' );
 
 /* Add featured image as background image to post navigation elements. */
-function twentyfifteen_post_nav_background() {
+function material_post_nav_background() {
 	if ( ! is_single() ) {
 		return;
 	}
@@ -113,9 +113,9 @@ function twentyfifteen_post_nav_background() {
 		';
 	}
 
-	wp_add_inline_style( 'twentyfifteen-style', $css );
+	wp_add_inline_style( 'material-style', $css );
 }
-add_action( 'wp_enqueue_scripts', 'twentyfifteen_post_nav_background' );
+add_action( 'wp_enqueue_scripts', 'material_post_nav_background' );
 
 
 /*    Google Analytics    */
@@ -178,10 +178,10 @@ remove_action('wp_head', '_admin_bar_bump_cb');
 add_filter('next_posts_link_attributes','posts_link_attributes_1');
 add_filter('previous_posts_link_attributes','posts_link_attributes_2');
 function posts_link_attributes_1() {
-  return 'class="btn btn-info btn-fab btn-raised mdi-hardware-keyboard-arrow-right"';
+  return 'class="btn btn-info btn-fab btn-raised glyphicon glyphicon-chevron-right"';
 }
 function posts_link_attributes_2() {
-	return 'class="btn btn-info btn-fab btn-raised mdi-hardware-keyboard-arrow-left"';
+	return 'class="btn btn-info btn-fab btn-raised glyphicon glyphicon-chevron-left"';
 }
 
 add_filter( 'comment_form_defaults', 'my_comment_defaults');
@@ -192,14 +192,12 @@ function my_comment_defaults($defaults) {
  
 	$defaults = array(
 		'fields'        	   => array(
-		'author' => '<div class="form-group"><label for="author" class="control-label">' . __( 'Name' ) . ( $req ? '<span class="required">*</span>' : '' ) . '</label> ' . '<input id="author" name="author" class="form-control" placeholder="your name" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></div>',
-		'email' => '<div form-group><label for="email" class="control-label">' . __( 'Email' )  . ( $req ? '<span class="required">*</span>' : '' ) . '</label> ' . '<input id="email" name="email" class="form-control" placeholder="email@address.co.uk" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></div>'
+		'author' => '<div class="form-group"><label for="author" class="control-label">' . __('Name','material') . ( $req ? '<span class="required">*</span>' : '' ) . '</label> ' . '<input id="author" name="author" class="form-control" placeholder="your name" type="text" value="" size="30"' . $aria_req . ' /></div>',
+		'email' => '<div form-group><label for="email" class="control-label">' . __( 'Email','material' )  . ( $req ? '<span class="required">*</span>' : '' ) . '</label> ' . '<input id="email" name="email" class="form-control" placeholder="email@address.co.uk" type="email" value="" size="30"' . $aria_req . ' /></div>'
                 ),
-		'comment_field' => '<div class="form-group"><label for="comment" class="control-label">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"  class="form-control" placeholder="your comment"></textarea></div>',
+		'comment_field' => '<div class="form-group"><label for="comment" class="control-label">' . __( 'Comment', 'material' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"  class="form-control" placeholder="your comment"></textarea></div>',
  
-		'must_log_in'          => '<p class="must-log-in">' .  sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ) . '</p>',
- 
-		'logged_in_as'         => '<p class="logged-in-as">' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out?</a>' ), admin_url( 'profile.php' ), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ) . '</p>',
+		'must_log_in'          => '<p class="must-log-in">' .  sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.','material'), wp_login_url( apply_filters( 'the_permalink', get_permalink()))) . '</p>',
  
 		'comment_notes_before' => '<fieldset>',
  
@@ -209,15 +207,15 @@ function my_comment_defaults($defaults) {
  
 		'id_submit'            => 'submit',
  
-		'title_reply'          => __( 'Leave a Comment' ),
+		'title_reply'          => __( 'Leave a Comment' ,'material'),
  
-		'title_reply_to'       => __( 'Leave a Reply %s' ),
+		'title_reply_to'       => __( 'Leave a Reply %s','material' ),
  
-		'cancel_reply_link'    => __( 'Cancel reply' ),
+		'cancel_reply_link'    => __( 'Cancel reply','material' ),
  
-		'label_submit'         => __( 'Comment' ),
+		'label_submit'         => __( 'Comment' ,'material'),
 
-		'class_submit'		   => __('btn btn-primary'),
+		'class_submit'		   => __('btn btn-primary','material'),
  
                 );
  
@@ -335,7 +333,7 @@ class material_Customize {
             'title' => __( 'Material Options', 'material' ), //Visible title of section
             'priority' => 35, //Determines what order this appears in
             'capability' => 'edit_theme_options', //Capability needed to tweak
-            'description' => __('Allows you to customize theme settings for Material.', 'Material'), //Descriptive tooltip
+            'description' => __('Allows you to customize theme settings for Material.', 'material'), //Descriptive tooltip
          ) 
       );
       
@@ -350,11 +348,12 @@ class material_Customize {
          array(
             'default' => '#928452', //Default setting/value to save
             'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
-            'transport' => 'postMessage', //What triggers a refresh of the setting? 'refresh' or 'postMessage' (instant)?
+            'transport' => 'postMessage',
+            'sanitize_callback' => '__return_true'
          ) 
       );
       
-      $wp_customize->add_setting( 'material_logo' );
+      $wp_customize->add_setting('material_logo',array('sanitize_callback'=>'esc_url_raw'));
                   
       //3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
       $wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
@@ -367,6 +366,7 @@ class material_Customize {
             'priority' => 10, //Determines the order this control appears in for the specified section
          ) 
       ) );
+
       
       $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'material_logo', array(
 		    'label'    => __( 'Logo', 'material' ),
@@ -495,6 +495,107 @@ add_action( 'wp_head' , array( 'material_Customize' , 'material_header_output' )
 
 // Enqueue live preview javascript in Theme Customizer admin screen
 add_action( 'customize_preview_init' , array( 'material_Customize' , 'material_live_preview' ) );
+
+// Add footer widget areas
+add_action( 'widgets_init', 'material_widget_areas_reg' ); 
+
+function material_widget_areas_reg() {
+	register_sidebar(array(
+	  'name' => __( 'Footer A', 'material' ),
+	  'id' => 'footer-a',
+	  'description' => __( 'Widgets in this area will be shown in the left column in the footer.', 'material' ),
+	  'before_title' => '<h3 class="widget-title">',
+	  'after_title' => '</h3>',
+	  'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
+	  'after_widget' => '</div><div class="clear"></div></div>'
+	));	
+	register_sidebar(array(
+	  'name' => __( 'Footer B', 'material' ),
+	  'id' => 'footer-b',
+	  'description' => __( 'Widgets in this area will be shown in the middle column in the footer.', 'material' ),
+	  'before_title' => '<h3 class="widget-title">',
+	  'after_title' => '</h3>',
+	  'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
+	  'after_widget' => '</div><div class="clear"></div></div>'
+	));
+	register_sidebar(array(
+	  'name' => __( 'Footer C', 'material' ),
+	  'id' => 'footer-c',
+	  'description' => __( 'Widgets in this area will be shown in the right column in the footer.', 'material' ),
+	  'before_title' => '<h3 class="widget-title">',
+	  'after_title' => '</h3>',
+	  'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
+	  'after_widget' => '</div><div class="clear"></div></div>'
+	));
+}
+
+
+// Delist the WordPress widgets replaced by custom theme widgets
+ function material_unregister_default_widgets() {
+     unregister_widget('WP_Widget_Recent_Comments');
+     unregister_widget('WP_Widget_Recent_Posts');
+ }
+ add_action('widgets_init', 'material_unregister_default_widgets', 11);
+
+ // Add editor styles
+function material_add_editor_styles() {
+    add_editor_style( 'material-editor-styles.css' );
+    
+}
+add_action( 'init', 'material_add_editor_styles' );
+
+//require get_template_directory() . '/inc/custom-header.php';
+
+function tcx_register_theme_customizer( $wp_customize ) {
+ 
+    $wp_customize->add_setting(
+        'tcx_link_color',
+        array(
+            'default'     => '#000000',
+            'transport'   => 'postMessage'
+        )
+    );
+ 
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'header_color',
+            array(
+                'label'      => __( 'Header Background Color', 'tcx' ),
+                'section'    => 'colors',
+                'settings'   => 'tcx_link_color'
+            )
+        )
+    );
+ 
+}
+add_action( 'customize_register', 'tcx_register_theme_customizer' );
+
+function tcx_customizer_css() {
+	//echo get_theme_mod( 'tcx_link_color' );
+    ?>
+    <style type="text/css">
+        .navbar-inverse { background-color: <?php echo get_theme_mod( 'tcx_link_color' ); ?>;}
+    </style>
+    <?php
+}
+
+add_action('wp_head', 'tcx_customizer_css');
+
+function tcx_customizer_live_preview() {
+ 
+    wp_enqueue_script(
+        'tcx-theme-customizer',
+        get_template_directory_uri() . '/js/theme-customizer.js',
+        array( 'jquery', 'customize-preview' ),
+        '0.3.0',
+        true
+    );
+ 
+}
+add_action( 'customize_preview_init', 'tcx_customizer_live_preview' );
+
+
 
 
 

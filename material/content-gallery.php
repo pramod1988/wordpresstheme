@@ -19,7 +19,7 @@
 		<?php
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				__( 'Read More', 'Material' ),
+				__( 'Read More', 'material' ),
 				the_title( '<span class="screen-reader-text">', '</span>', false )
 			) );
 
