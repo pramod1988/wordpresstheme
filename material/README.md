@@ -1,6 +1,8 @@
 # materialdesign
 Wordpress Material design theme
 
+![alt tag](https://raw.githubusercontent.com/pramod1988/wordpresstheme/master/material/screenshot.png)
+
 # Copyright
 --------------
 
