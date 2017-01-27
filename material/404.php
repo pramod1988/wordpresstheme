@@ -6,7 +6,7 @@ get_header(); ?>
 
 			<section class="error-404 not-found">
 				<header class="page-header">
-					<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'material' ); ?></h1>
+					<h1 class="page-title"><?php _e( 'Oops! That page can&rsquo;t be found.', 'material-blog-story' ); ?></h1>
 				</header><!-- .page-header -->
 
 			</section><!-- .error-404 -->

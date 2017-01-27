@@ -31,8 +31,8 @@ get_header(); ?>
 	
 		<div class="row">
 		  <div class="col-md-4 clearfix col-md-offset-4">
-				<?php echo get_previous_posts_link( __('', 'material') . '&nbsp;'); ?>
-				<?php echo get_next_posts_link( '&nbsp;' . __('', 'material')); ?>
+				<?php echo get_previous_posts_link( __('', 'material-blog-story') . '&nbsp;'); ?>
+				<?php echo get_next_posts_link( '&nbsp;' . __('', 'material-blog-story')); ?>
 					
 				<div class="clear"></div>
 			

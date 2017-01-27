@@ -48,12 +48,12 @@ get_header(); ?>
 					<?php								
 					if (!empty( $prev_post )): ?>
 					
-						<a class="btn btn-info btn-fab btn-raised mdi-hardware-keyboard-arrow-left" title="<?php _e('Previous post:', 'material'); echo ' ' . get_the_title($prev_post); ?>" href="<?php echo get_permalink( $prev_post->ID ); ?>">
+						<a class="btn btn-info btn-fab btn-raised mdi-hardware-keyboard-arrow-left" title="<?php _e('Previous post:', 'material-blog-story'); echo ' ' . get_the_title($prev_post); ?>" href="<?php echo get_permalink( $prev_post->ID ); ?>">
 						<span class="glyphicon glyphicon-chevron-left"></span> </a>
 					<?php endif; 
 					if (!empty( $next_post )): ?>
 						
-						<a class="btn btn-info btn-fab btn-raised mdi-hardware-keyboard-arrow-right" title="<?php _e('Next post:', 'material'); echo ' ' . get_the_title($next_post); ?>" href="<?php echo get_permalink( $next_post->ID ); ?>">
+						<a class="btn btn-info btn-fab btn-raised mdi-hardware-keyboard-arrow-right" title="<?php _e('Next post:', 'material-blog-story'); echo ' ' . get_the_title($next_post); ?>" href="<?php echo get_permalink( $next_post->ID ); ?>">
 						  <span class="glyphicon glyphicon-chevron-right"></span>
 						</a>
 				

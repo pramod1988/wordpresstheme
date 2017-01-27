@@ -62,7 +62,7 @@
 
 
 		<div class="site-info">
-			     <a href="<?php echo esc_url( __( 'https://twitter.com/pramodpandey05', 'material' ) ); ?>"><?php printf( __( 'Theme by Pramod Pandey', 'material' ), '' ); ?></a>
+			     <a href="<?php echo esc_url( __( 'https://twitter.com/pramodpandey05', 'material-blog-story' ) ); ?>"><?php printf( __( 'Theme by Pramod Pandey', 'material-blog-story' ), '' ); ?></a>
 		</div><!-- .site-info -->
 	</footer><!-- .site-footer -->
 

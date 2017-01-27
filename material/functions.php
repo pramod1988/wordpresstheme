@@ -20,7 +20,7 @@ function material_setup() {
 
 	// Navigation
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu',      'material' )
+		'primary' => __( 'Primary Menu',      'material-blog-story' )
 	) );
 
 	// Set content-width
@@ -46,7 +46,7 @@ function material_setup() {
 	) );
 
 	// Make the theme translation ready
-	load_theme_textdomain('material', get_template_directory() . '/languages');
+	load_theme_textdomain('material-blog-story', get_template_directory() . '/languages');
 	
 	
 }
@@ -192,12 +192,12 @@ function my_comment_defaults($defaults) {
  
 	$defaults = array(
 		'fields'        	   => array(
-		'author' => '<div class="form-group"><label for="author" class="control-label">' . __('Name','material') . ( $req ? '<span class="required">*</span>' : '' ) . '</label> ' . '<input id="author" name="author" class="form-control" placeholder="your name" type="text" value="" size="30"' . $aria_req . ' /></div>',
-		'email' => '<div form-group><label for="email" class="control-label">' . __( 'Email','material' )  . ( $req ? '<span class="required">*</span>' : '' ) . '</label> ' . '<input id="email" name="email" class="form-control" placeholder="email@address.co.uk" type="email" value="" size="30"' . $aria_req . ' /></div>'
+		'author' => '<div class="form-group"><label for="author" class="control-label">' . __('Name','material-blog-story') . ( $req ? '<span class="required">*</span>' : '' ) . '</label> ' . '<input id="author" name="author" class="form-control" placeholder="your name" type="text" value="" size="30"' . $aria_req . ' /></div>',
+		'email' => '<div form-group><label for="email" class="control-label">' . __( 'Email','material-blog-story' )  . ( $req ? '<span class="required">*</span>' : '' ) . '</label> ' . '<input id="email" name="email" class="form-control" placeholder="email@address.co.uk" type="email" value="" size="30"' . $aria_req . ' /></div>'
                 ),
-		'comment_field' => '<div class="form-group"><label for="comment" class="control-label">' . __( 'Comment', 'material' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"  class="form-control" placeholder="your comment"></textarea></div>',
+		'comment_field' => '<div class="form-group"><label for="comment" class="control-label">' . __( 'Comment', 'material-blog-story' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"  class="form-control" placeholder="your comment"></textarea></div>',
  
-		'must_log_in'          => '<p class="must-log-in">' .  sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.','material'), wp_login_url( apply_filters( 'the_permalink', get_permalink()))) . '</p>',
+		'must_log_in'          => '<p class="must-log-in">' .  sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.','material-blog-story'), wp_login_url( apply_filters( 'the_permalink', get_permalink()))) . '</p>',
  
 		'comment_notes_before' => '<fieldset>',
  
@@ -207,15 +207,15 @@ function my_comment_defaults($defaults) {
  
 		'id_submit'            => 'submit',
  
-		'title_reply'          => __( 'Leave a Comment' ,'material'),
+		'title_reply'          => __( 'Leave a Comment' ,'material-blog-story'),
  
-		'title_reply_to'       => __( 'Leave a Reply %s','material' ),
+		'title_reply_to'       => __( 'Leave a Reply %s','material-blog-story' ),
  
-		'cancel_reply_link'    => __( 'Cancel reply','material' ),
+		'cancel_reply_link'    => __( 'Cancel reply','material-blog-story' ),
  
-		'label_submit'         => __( 'Comment' ,'material'),
+		'label_submit'         => __( 'Comment' ,'material-blog-story'),
 
-		'class_submit'		   => __('btn btn-primary','material'),
+		'class_submit'		   => __('btn btn-primary','material-blog-story'),
  
                 );
  
@@ -233,7 +233,7 @@ function material_comment( $comment, $args, $depth ) {
 	
 	<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
 	
-		<?php __( 'Pingback:', 'material' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'material' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php __( 'Pingback:', 'material-blog-story' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'material-blog-story' ), '<span class="edit-link">', '</span>' ); ?>
 		
 	</li>
 	<?php
@@ -252,13 +252,13 @@ function material_comment( $comment, $args, $depth ) {
 				$comment_number = str_pad($comment_number, 2, '0', STR_PAD_LEFT);
 			?>
 			
-			<?php if ( $comment->user_id === $post->post_author ) { echo '<a href="' . esc_url( get_comment_link( $comment->comment_ID ) ) . '" title="' . __('Comment by post author','material') . '" class="by-post-author"> ' . __( '', 'material' ) . '</a>'; } ?>
+			<?php if ( $comment->user_id === $post->post_author ) { echo '<a href="' . esc_url( get_comment_link( $comment->comment_ID ) ) . '" title="' . __('Comment by post author','material-blog-story') . '" class="by-post-author"> ' . __( '', 'material-blog-story' ) . '</a>'; } ?>
 			
 			<div class="comment-inner">
 			
 				<div class="comment-header">
 											
-					<h4><?php echo get_comment_author_link(); ?> <span><?php _e('','material') ?></span></h4>
+					<h4><?php echo get_comment_author_link(); ?> <span><?php _e('','material-blog-story') ?></span></h4>
 				
 				</div>
 	
@@ -266,7 +266,7 @@ function material_comment( $comment, $args, $depth ) {
 				
 					<?php if ( '0' == $comment->comment_approved ) : ?>
 					
-						<p class="comment-awaiting-moderation"><?php __( 'Your comment is awaiting moderation.', 'material' ); ?></p>
+						<p class="comment-awaiting-moderation"><?php __( 'Your comment is awaiting moderation.', 'material-blog-story' ); ?></p>
 						
 					<?php endif; ?>
 				
@@ -284,12 +284,12 @@ function material_comment( $comment, $args, $depth ) {
 				
 					<div class="fright">
 				
-						<?php edit_comment_link( __( 'Edit', 'material' ), '<p class="comment-edit">', '</p>' ); ?>
+						<?php edit_comment_link( __( 'Edit', 'material-blog-story' ), '<p class="comment-edit">', '</p>' ); ?>
 						
 						<?php 
 							comment_reply_link( array_merge( $args, 
 							array( 
-								'reply_text' 	=>  	__( 'Reply', 'material' ), 
+								'reply_text' 	=>  	__( 'Reply', 'material-blog-story' ), 
 								'depth'			=> 		$depth, 
 								'max_depth' 	=> 		$args['max_depth'],
 								'before'		=>		'<p class="comment-reply">',
@@ -330,17 +330,17 @@ class material_Customize {
       //1. Define a new section (if desired) to the Theme Customizer
       $wp_customize->add_section( 'Material_options', 
          array(
-            'title' => __( 'Material Options', 'material' ), //Visible title of section
+            'title' => __( 'Material Options', 'material-blog-story' ), //Visible title of section
             'priority' => 35, //Determines what order this appears in
             'capability' => 'edit_theme_options', //Capability needed to tweak
-            'description' => __('Allows you to customize theme settings for Material.', 'material'), //Descriptive tooltip
+            'description' => __('Allows you to customize theme settings for Material.', 'material-blog-story'), //Descriptive tooltip
          ) 
       );
       
       $wp_customize->add_section( 'material_logo_section' , array(
-		    'title'       => __( 'Logo', 'material' ),
+		    'title'       => __( 'Logo', 'material-blog-story' ),
 		    'priority'    => 40,
-		    'description' => __('Upload a logo to replace the default site name and description in the header', 'material'),
+		    'description' => __('Upload a logo to replace the default site name and description in the header', 'material-blog-story'),
 		) );
       
       //2. Register new settings to the WP database...
@@ -349,7 +349,7 @@ class material_Customize {
             'default' => '#928452', //Default setting/value to save
             'type' => 'theme_mod', //Is this an 'option' or a 'theme_mod'?
             'transport' => 'postMessage',
-            'sanitize_callback' => '__return_true'
+            'sanitize_callback' => 'cs_sanitize_clean'
          ) 
       );
       
@@ -360,7 +360,7 @@ class material_Customize {
          $wp_customize, //Pass the $wp_customize object (required)
          'material_accent_color', //Set a unique ID for the control
          array(
-            'label' => __( 'Accent Color', 'material' ), //Admin-visible name of the control
+            'label' => __( 'Accent Color', 'material-blog-story' ), //Admin-visible name of the control
             'section' => 'colors', //ID of the section this control should render in (can be one of yours, or a WordPress default section)
             'settings' => 'accent_color', //Which setting to load and manipulate (serialized is okay)
             'priority' => 10, //Determines the order this control appears in for the specified section
@@ -369,7 +369,7 @@ class material_Customize {
 
       
       $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'material_logo', array(
-		    'label'    => __( 'Logo', 'material' ),
+		    'label'    => __( 'Logo', 'material-blog-story' ),
 		    'section'  => 'material_logo_section',
 		    'settings' => 'material_logo',
 		) ) );
@@ -501,27 +501,27 @@ add_action( 'widgets_init', 'material_widget_areas_reg' );
 
 function material_widget_areas_reg() {
 	register_sidebar(array(
-	  'name' => __( 'Footer A', 'material' ),
+	  'name' => __( 'Footer A', 'material-blog-story' ),
 	  'id' => 'footer-a',
-	  'description' => __( 'Widgets in this area will be shown in the left column in the footer.', 'material' ),
+	  'description' => __( 'Widgets in this area will be shown in the left column in the footer.', 'material-blog-story' ),
 	  'before_title' => '<h3 class="widget-title">',
 	  'after_title' => '</h3>',
 	  'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
 	  'after_widget' => '</div><div class="clear"></div></div>'
 	));	
 	register_sidebar(array(
-	  'name' => __( 'Footer B', 'material' ),
+	  'name' => __( 'Footer B', 'material-blog-story' ),
 	  'id' => 'footer-b',
-	  'description' => __( 'Widgets in this area will be shown in the middle column in the footer.', 'material' ),
+	  'description' => __( 'Widgets in this area will be shown in the middle column in the footer.', 'material-blog-story' ),
 	  'before_title' => '<h3 class="widget-title">',
 	  'after_title' => '</h3>',
 	  'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
 	  'after_widget' => '</div><div class="clear"></div></div>'
 	));
 	register_sidebar(array(
-	  'name' => __( 'Footer C', 'material' ),
+	  'name' => __( 'Footer C', 'material-blog-story' ),
 	  'id' => 'footer-c',
-	  'description' => __( 'Widgets in this area will be shown in the right column in the footer.', 'material' ),
+	  'description' => __( 'Widgets in this area will be shown in the right column in the footer.', 'material-blog-story' ),
 	  'before_title' => '<h3 class="widget-title">',
 	  'after_title' => '</h3>',
 	  'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
@@ -546,13 +546,14 @@ add_action( 'init', 'material_add_editor_styles' );
 
 //require get_template_directory() . '/inc/custom-header.php';
 
-function tcx_register_theme_customizer( $wp_customize ) {
+function material_register_theme_customizer( $wp_customize ) {
  
     $wp_customize->add_setting(
-        'tcx_link_color',
+        'material_link_color',
         array(
             'default'     => '#000000',
-            'transport'   => 'postMessage'
+            'transport'   => 'postMessage',
+            'sanitize_callback' => 'esc_url_raw'
         )
     );
  
@@ -561,31 +562,34 @@ function tcx_register_theme_customizer( $wp_customize ) {
             $wp_customize,
             'header_color',
             array(
-                'label'      => __( 'Header Background Color', 'tcx' ),
+                'label'      => __( 'Header Background Color', 'material-blog-story' ),
                 'section'    => 'colors',
-                'settings'   => 'tcx_link_color'
+                'settings'   => 'material_link_color'
             )
         )
     );
  
 }
-add_action( 'customize_register', 'tcx_register_theme_customizer' );
+add_action( 'customize_register', 'material_register_theme_customizer' );
 
-function tcx_customizer_css() {
-	//echo get_theme_mod( 'tcx_link_color' );
+function material_customizer_css() {
+	
     ?>
     <style type="text/css">
-        .navbar-inverse { background-color: <?php echo get_theme_mod( 'tcx_link_color' ); ?>;}
+        .navbar-inverse { 
+        					background-color: <?php echo get_theme_mod( 'material_link_color' ); ?>;
+        					border-color: <?php echo get_theme_mod( 'material_link_color' ); ?>;
+        				}
     </style>
     <?php
 }
 
-add_action('wp_head', 'tcx_customizer_css');
+add_action('wp_head', 'material_customizer_css');
 
-function tcx_customizer_live_preview() {
+function material_customizer_live_preview() {
  
     wp_enqueue_script(
-        'tcx-theme-customizer',
+        'material-theme-customizer',
         get_template_directory_uri() . '/js/theme-customizer.js',
         array( 'jquery', 'customize-preview' ),
         '0.3.0',
@@ -593,7 +597,7 @@ function tcx_customizer_live_preview() {
     );
  
 }
-add_action( 'customize_preview_init', 'tcx_customizer_live_preview' );
+add_action( 'customize_preview_init', 'material_customizer_live_preview' );
 
 
 
